@@ -1,15 +1,17 @@
 package web
 
+import "ecommerce_template/cmd/web/layouts"
+
 templ HelloForm() {
-	@Base() {
-		<form hx-post="/hello" method="POST" hx-target="#hello-container">
-			<input class="border" id="name" name="name" type="text"/>
-			<button type="submit">Submit</button>
-		</form>
-		<div id="hello-container"></div>
-	}
+@layouts.Base() {
+<form hx-post="/hello" method="POST" hx-target="#hello-container">
+  <input class="input input-bordered" id="name" name="name" type="text" />
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<div id="hello-container"></div>
+}
 }
 
 templ HelloPost(name string) {
-	<div>Hello, { name }</div>
+<div>Hello, { name }</div>
 }

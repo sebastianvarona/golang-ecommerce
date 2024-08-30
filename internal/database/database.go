@@ -3,6 +3,7 @@ package database
 import (
 	"context"
 	"database/sql"
+	"ecommerce_template/internal/models"
 	"fmt"
 	"log"
 	"os"
@@ -22,6 +23,51 @@ type Service interface {
 	// Close terminates the database connection.
 	// It returns an error if the connection cannot be closed.
 	Close() error
+
+	// Services
+	UserInsert(user *models.User) (int, error)
+
+	// Category methods
+	CreateCategory(category *models.Category) error
+	GetCategoryByID(id int) (*models.Category, error)
+	GetAllCategories() ([]*models.Category, error)
+	UpdateCategory(category *models.Category) error
+	DeleteCategory(id int) error
+
+	// CategoryTranslation methods
+	CreateCategoryTranslation(ct *models.CategoryTranslation) error
+	GetCategoryTranslationByID(id int) (*models.CategoryTranslation, error)
+	GetAllCategoryTranslations() ([]*models.CategoryTranslation, error)
+	UpdateCategoryTranslation(ct *models.CategoryTranslation) error
+	DeleteCategoryTranslation(id int) error
+
+	// Product methods
+	CreateProduct(product *models.Product) error
+	GetProductByID(id int) (*models.Product, error)
+	GetAllProducts() ([]*models.Product, error)
+	UpdateProduct(product *models.Product) error
+	DeleteProduct(id int) error
+
+	// ProductTranslation methods
+	CreateProductTranslation(pt *models.ProductTranslation) error
+	GetProductTranslationByID(id int) (*models.ProductTranslation, error)
+	GetAllProductTranslations() ([]*models.ProductTranslation, error)
+	UpdateProductTranslation(pt *models.ProductTranslation) error
+	DeleteProductTranslation(id int) error
+
+	// Variant methods
+	CreateVariant(variant *models.Variant) error
+	GetVariantByID(id int) (*models.Variant, error)
+	GetAllVariants() ([]*models.Variant, error)
+	UpdateVariant(variant *models.Variant) error
+	DeleteVariant(id int) error
+
+	// VariantTranslation methods
+	CreateVariantTranslation(vt *models.VariantTranslation) error
+	GetVariantTranslationByID(id int) (*models.VariantTranslation, error)
+	GetAllVariantTranslations() ([]*models.VariantTranslation, error)
+	UpdateVariantTranslation(vt *models.VariantTranslation) error
+	DeleteVariantTranslation(id int) error
 }
 
 type service struct {
@@ -38,18 +84,23 @@ var (
 	dbInstance *service
 )
 
-func New() Service {
-	// Reuse Connection
-	if dbInstance != nil {
-		return dbInstance
-	}
+func NewDB() *sql.DB {
 	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable&search_path=%s", username, password, host, port, database, schema)
 	db, err := sql.Open("pgx", connStr)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	return db
+}
+
+func New() Service {
+	// Reuse Connection
+	if dbInstance != nil {
+		return dbInstance
+	}
 	dbInstance = &service{
-		db: db,
+		db: NewDB(),
 	}
 	return dbInstance
 }

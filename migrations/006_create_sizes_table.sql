@@ -1,0 +1,15 @@
+CREATE TABLE sizes (
+  id SERIAL PRIMARY KEY,
+  variant_id INT REFERENCES variants(id) ON DELETE CASCADE,
+  additional_price NUMERIC(10, 2) DEFAULT 0.00,
+  stock INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE size_translations (
+  id SERIAL PRIMARY KEY,
+  size_id INT REFERENCES sizes(id) ON DELETE CASCADE,
+  language_id INT REFERENCES languages(id) ON DELETE CASCADE,
+  name VARCHAR(50) NOT NULL
+);

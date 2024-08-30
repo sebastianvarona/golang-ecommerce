@@ -1,0 +1,97 @@
+package pages
+
+import "ecommerce_template/cmd/web/layouts"
+
+templ RegisterPage() {
+@layouts.Base() {
+<section class="bg-white">
+  <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
+    <aside class="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
+      <img alt=""
+        src="https://images.unsplash.com/photo-1605106702734-205df224ecce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+        class="absolute inset-0 h-full w-full object-cover" />
+    </aside>
+    <main class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+      <div class="max-w-xl lg:max-w-3xl">
+        <a class="block text-blue-600" href="#">
+          <span class="sr-only">Home</span>
+          <svg class="h-8 sm:h-10" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M216 128a88 88 0 1 1-88-88 88 88 0 0 1 88 88Z" opacity=".2"></path>
+            <path
+              d="M245.11 60.68c-7.65-13.19-27.84-16.16-58.5-8.66A95.93 95.93 0 0 0 32 128a98 98 0 0 0 .78 12.31C5.09 169 5.49 186 10.9 195.32 16 204.16 26.64 208 40.64 208a124.11 124.11 0 0 0 28.79-4A95.93 95.93 0 0 0 224 128a97.08 97.08 0 0 0-.77-12.25c12.5-13 20.82-25.35 23.65-35.92 1.95-7.32 1.36-13.76-1.77-19.15ZM128 48a80.11 80.11 0 0 1 78 62.2c-17.06 16.06-40.15 32.53-62.07 45.13-27.55 15.81-51.45 25.67-70.51 31.07A79.94 79.94 0 0 1 128 48ZM24.74 187.29c-1.46-2.51-.65-7.24 2.22-13a79.05 79.05 0 0 1 10.29-15.05 96 96 0 0 0 18 31.32c-17.25 2.9-28.01 1.05-30.51-3.27ZM128 208a79.45 79.45 0 0 1-38.56-9.94 370 370 0 0 0 62.43-28.86c21.58-12.39 40.68-25.82 56.07-39.08A80.07 80.07 0 0 1 128 208ZM231.42 75.69c-1.7 6.31-6.19 13.53-12.63 21.13a95.69 95.69 0 0 0-18-31.35c14.21-2.35 27.37-2.17 30.5 3.24.9 1.57.95 3.92.13 6.98Z">
+            </path>
+          </svg>
+        </a>
+        <h1 class="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+          Welcome to Planet
+        </h1>
+        <p class="mt-4 leading-relaxed text-gray-500">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam dolorum aliquam,
+          quibusdam aperiam voluptatum.
+        </p>
+        <form action="/register" method="post" hx-boost="true" class="mt-8 grid grid-cols-6 gap-6">
+          <div class="col-span-6 sm:col-span-3">
+            <label for="FirstName" class="block text-sm font-medium text-gray-700">
+              First Name
+            </label>
+            <input type="text" id="FirstName" name="first_name"
+              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+          </div>
+          <div class="col-span-6 sm:col-span-3">
+            <label for="LastName" class="block text-sm font-medium text-gray-700">
+              Last Name
+            </label>
+            <input type="text" id="LastName" name="last_name"
+              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+          </div>
+          <div class="col-span-6">
+            <label for="Email" class="block text-sm font-medium text-gray-700">Email </label>
+            <input type="email" id="Email" name="email"
+              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+          </div>
+          <div class="col-span-6 sm:col-span-3">
+            <label for="Password" class="block text-sm font-medium text-gray-700">Password </label>
+            <input type="password" id="Password" name="password"
+              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+          </div>
+          <div class="col-span-6 sm:col-span-3">
+            <label for="PasswordConfirmation" class="block text-sm font-medium text-gray-700">
+              Password Confirmation
+            </label>
+            <input type="password" id="PasswordConfirmation" name="password_confirmation"
+              class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
+          </div>
+          <div class="col-span-6">
+            <label for="MarketingAccept" class="flex gap-4">
+              <input type="checkbox" id="MarketingAccept" name="marketing_accept"
+                class="size-5 rounded-md border-gray-200 bg-white shadow-sm" />
+              <span class="text-sm text-gray-700">
+                I want to receive emails about events, product updates and company announcements.
+              </span>
+            </label>
+          </div>
+          <div class="col-span-6">
+            <p class="text-sm text-gray-500">
+              By creating an account, you agree to our
+              <a href="#" class="text-gray-700 underline">terms and conditions </a>
+              and
+              <a href="#" class="text-gray-700 underline">privacy policy</a>.
+            </p>
+          </div>
+          <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
+            <button
+              class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
+              Create an account
+            </button>
+            <p class="mt-4 text-sm text-gray-500 sm:mt-0">
+              Already have an account?
+              <a href="#" class="text-gray-700 underline">Log in</a>.
+            </p>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+</section>
+}
+}

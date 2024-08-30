@@ -1,6 +1,7 @@
 package server
 
 import (
+	"ecommerce_template/internal/database"
 	"fmt"
 	"net/http"
 	"os"
@@ -8,14 +9,11 @@ import (
 	"time"
 
 	_ "github.com/joho/godotenv/autoload"
-
-	"ecommerce_template/internal/database"
 )
 
 type Server struct {
+	db   database.Service
 	port int
-
-	db database.Service
 }
 
 func NewServer() *http.Server {
